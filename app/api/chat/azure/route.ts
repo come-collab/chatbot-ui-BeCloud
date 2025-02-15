@@ -18,22 +18,7 @@ export async function POST(request: Request) {
     const ENDPOINT = profile.azure_openai_endpoint
     const KEY = profile.azure_openai_api_key
 
-    let DEPLOYMENT_ID = ""
-    switch (chatSettings.model) {
-      case "gpt-3.5-turbo":
-        DEPLOYMENT_ID = profile.azure_openai_35_turbo_id || ""
-        break
-      case "gpt-4-turbo-preview":
-        DEPLOYMENT_ID = profile.azure_openai_45_turbo_id || ""
-        break
-      case "gpt-4-vision-preview":
-        DEPLOYMENT_ID = profile.azure_openai_45_vision_id || ""
-        break
-      default:
-        return new Response(JSON.stringify({ message: "Model not found" }), {
-          status: 400
-        })
-    }
+    let DEPLOYMENT_ID = "gpt-4o-mini"
 
     if (!ENDPOINT || !KEY || !DEPLOYMENT_ID) {
       return new Response(
